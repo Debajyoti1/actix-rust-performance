@@ -8,7 +8,7 @@ async fn hello() -> impl Responder {
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
     HttpServer::new(|| App::new().service(hello))
-        .workers(4) // Set 4 workers
+        .workers(3) // Set 3 workers
         .bind(("0.0.0.0", 4242))?
         .run()
         .await
