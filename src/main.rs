@@ -1,14 +1,14 @@
-use actix_web::{get, App, HttpServer, Responder};
+use actix_web::{get, App, HttpServer, HttpResponse};
 
 #[get("/")]
-async fn hello() -> impl Responder {
-    "Hello World"
+async fn hello() -> HttpResponse {
+    HttpResponse::Ok().body("Hello world")
 }
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
     HttpServer::new(|| App::new().service(hello))
-        .workers(3) // Set 3 workers
+        .workers(1)
         .bind(("0.0.0.0", 4242))?
         .run()
         .await
