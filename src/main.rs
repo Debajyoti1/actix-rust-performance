@@ -8,7 +8,7 @@ async fn hello() -> HttpResponse {
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
     HttpServer::new(|| App::new().service(hello))
-        .workers(1)
+        .workers(2)
         .bind(("0.0.0.0", 4242))?
         .run()
         .await
